@@ -14,12 +14,11 @@ def get_transaction_date(min_montn: int, max_month: int, min_day: int, max_day: 
     return date.strftime("%m/%d/%Y")
     
 
-def build_transaction(account) -> list:
+def build_transaction() -> list:
     transaction = list()
 
     transaction.append(uuid.uuid4().__str__()[:13])
     transaction.append(get_transaction_date(min_montn=3, max_month=6, min_day=1, max_day=30))
     transaction.append(get_transaction_import(min=-60, max=60))
-    transaction.append(account)
 
     return transaction
