@@ -7,7 +7,8 @@ def create_csv_file(func):
         import uuid
 
         result = func(*args, **kwargs)
-        with open(f"csv/{uuid.uuid4().__str__()}.csv", "w", newline="") as csv_file:
+        account = args[0]
+        with open(f"csv/{account}.csv", "w", newline="") as csv_file:
             csv_writer = csv.writer(csv_file)
 
             for row in result:
@@ -18,7 +19,7 @@ def create_csv_file(func):
 
 @create_csv_file
 def build_transactions_file(account, transaction_builder=build_transaction):
-    headers = ["Id", "Date", "Transaction", "Account"]
+    headers = ["Id", "Date", "Transaction"]
 
     csv_body = [headers]
 
