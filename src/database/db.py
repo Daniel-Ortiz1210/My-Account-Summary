@@ -15,9 +15,14 @@ psql_db = PostgresqlDatabase(
     host=db_params.get("host")
     )
 
-def init_db():
+
+def init_db(drop_all=False):
     from src.database.models.models import Account, Transaction
-    psql_db.connect()
-    psql_db.create_tables(models=[Account, Transaction])
-    psql_db.close()
-    
+    with psql_db.connection_context():
+        try:
+            if drop_all:
+                psql_db.drop_tables(models=[Account, Transaction])
+                return
+            psql_db.create_tables(models=[Account, Transaction])
+        except:
+            psql_db.rollback()
