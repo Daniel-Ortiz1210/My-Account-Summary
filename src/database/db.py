@@ -16,5 +16,8 @@ psql_db = PostgresqlDatabase(
     )
 
 def init_db():
-    from src.database.models.models import *
+    from src.database.models.models import Account, Transaction
+    psql_db.connect()
+    psql_db.create_tables(models=[Account, Transaction])
+    psql_db.close()
     
