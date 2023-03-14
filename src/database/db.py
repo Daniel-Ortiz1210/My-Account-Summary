@@ -8,6 +8,7 @@ db_params = {
     "password": "aZf5gT6f2KVb001"
     }
 
+
 psql_db = PostgresqlDatabase(
     db_params.get("name"), 
     user=db_params.get("user"), 
