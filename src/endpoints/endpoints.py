@@ -21,17 +21,17 @@ def my_account_statement(email: str = Path(), account_number: str = Path(max_len
             account = Account(account_number=account_number)
             account.save()
         except:
-            return JSONResponse({"message": "No pudimos guardar tu cuenta"}, status_code=status.HTTP_400_BAD_REQUEST)
+            return JSONResponse({"message": "No pudimos verificar tu numero cuenta"}, status_code=status.HTTP_404_NOT_FOUND)
         build_transactions_file(account_number)
         send_email = send_email(account_number, email)
 
         if send_email["status"] == 202:
             return JSONResponse({"message": "Email enviado con exito"}, status_code=status.HTTP_200_OK)
-        return JSONResponse({"message": "No pudimos enviar el email", "info": send_email["info"]}, status_code=send_email["status"])
+        return JSONResponse({"message": "No pudimos enviar el email", "info": send_email["info"]}, status_code=status.HTTP_400_BAD_REQUEST)
     
     send_email = send_email(account_number, email)
 
     if send_email["status"] == 202:
         return JSONResponse({"message": "Email enviado con exito"}, status_code=status.HTTP_200_OK)
-    return JSONResponse({"message": "No pudimos enviar el email", "info": send_email["info"]}, status_code=send_email["status"])
+    return JSONResponse({"message": "No pudimos enviar el email"}, status_code=status.HTTP_400_BAD_REQUEST)
     
