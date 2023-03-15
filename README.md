@@ -37,10 +37,10 @@ Once the container is up and running, you can use Postman to make a request.
 
 http://0.0.0.0:8080/my_account_statement/{email}/{account_number}
 
-> - email (*string*)
+> - **email** (*string*)
 	Destinatary email, you'll receive your account summary with this email
-    - account_number (*string*)
-	    Is a random 16-digit number, simulating a account number.
+> - **account_number** (*string*)
+	Is a random 16-digit number, simulating a account number.
 
 #### Responses
 
@@ -67,3 +67,6 @@ http://0.0.0.0:8080/my_account_statement/{email}/{account_number}
 
 - Check your email inbox, and search for the email.
 - Download the csv file attached to the email.
+
+Now you can see a table with a summary of your lasts transactions, your account balance and more.
+
