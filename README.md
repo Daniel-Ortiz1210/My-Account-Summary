@@ -61,13 +61,11 @@ http://0.0.0.0:8080/my_account_statement/{email}/{account_number}
 	}
 ```
 
-Check your email
+## Check your email
 
-Check your email inbox, and search for the email.
-Download the csv file attached to the email.
+- Check your email inbox, and search for the email.
+- Download the csv file attached to the email.
 
-```html
-<!DOCTYPE html>
 <html>
 <head>
     <title>Tabla centrada con estilo</title>
@@ -128,14 +126,13 @@ Download the csv file attached to the email.
       </thead>
       <tbody>
         <tr>
-          <td>200.00</td>
+          <td>300.34</td>
           <td>30.50</td>
-          <td>-23.40</td>
-          <td>Transacciones en enero: 10</td>
+          <td>-40.25</td>
+          <td>Transacciones en Enero: 12</td>
         </tr>
       </tbody>
     </table>
 
 </body>
 </html>
-```
