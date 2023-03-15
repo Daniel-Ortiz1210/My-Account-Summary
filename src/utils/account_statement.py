@@ -18,7 +18,7 @@ def get_balance(account_number):
 def count_transactions_by_month(account_number):
     query = Transaction.select(
         Transaction.date.month, fn.COUNT(Transaction.id).alias("count")).where(
-            account_number==account_number).order_by(
+            Transaction.account_number==account_number).order_by(
                 Transaction.date.month).group_by(
                 Transaction.date.month).dicts(
                     as_dict=True

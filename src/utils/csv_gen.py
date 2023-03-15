@@ -14,6 +14,7 @@ def insert_transactions_to_db(account):
         transactions_list = TransactionsSchema(transactions=list(csv_file))
 
     Transaction.insert_many(transactions_list.dict()["transactions"]).execute()
+    return
         
 
 def create_csv_file(func):
