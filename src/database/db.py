@@ -1,11 +1,18 @@
 from peewee import PostgresqlDatabase
+import os
+
+
+db_host = os.environ.get("DB_HOST", "database-1.c5niavzkvagt.us-east-1.rds.amazonaws.com")
+db_name = os.environ.get("DB_NAME", "transactions")
+db_password = os.environ.get("DB_PASSWORD", "aZf5gT6f2KVb001")
+db_user = os.environ.get("DB_USER", "postgres")
 
 
 db_params = {
-    "name": "transactions",
-    "host": "database-1.c5niavzkvagt.us-east-1.rds.amazonaws.com",
-    "user": "postgres",
-    "password": "aZf5gT6f2KVb001"
+    "name": db_name,
+    "host": db_host,
+    "user": db_user,
+    "password": db_password
     }
 
 
