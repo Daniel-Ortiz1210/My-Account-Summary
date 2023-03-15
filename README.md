@@ -70,3 +70,4 @@ http://0.0.0.0:8080/my_account_statement/{email}/{account_number}
 
 Now you can see a table with a summary of your lasts transactions, your account balance and more.
 
+Enjoy!
