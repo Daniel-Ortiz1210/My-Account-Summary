@@ -5,9 +5,11 @@ I love buy all the things I need with my own money, but when it´s time to watch
 ## Installation
 
 **Clone the repository to your local machine**
+
 https://github.com/Daniel-Ortiz1210/My-Account-Summary.git
 
 **Install Docker**
+
 https://docs.docker.com/desktop/
 
 ## Usage
@@ -37,8 +39,8 @@ http://0.0.0.0:8080/my_account_statement/{email}/{account_number}
 
 > - email (*string*)
 	Destinatary email, you'll receive your account summary with this email
-- account_number (*string*)
-	Is a random 16-digit number, simulating a account number.
+    - account_number (*string*)
+	    Is a random 16-digit number, simulating a account number.
 
 #### Responses
 
