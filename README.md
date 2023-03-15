@@ -2,6 +2,14 @@
 
 I love buy all the things I need with my own money, but when it´s time to watch the numbers in my card, I want no surprises. Clear numbers beetween you and your bank is a key for a long relation.
 
+## About the project
+When you wake a request, you dont have to worry about having to pass in a set of transactions or a real account number. 
+The API generate a set of 30 transactions in a 4 months period. The import and the date are randomly generated.
+Then, the API inserts the transactions in our DB located in a public cloud, we use a PostgreSQL RDS database. (you can check the credentials in the docker-compose.yml file)
+The API the process the transactions data and make an account summary, the send you later will see in the email.
+We retrive the account summary and insert de data into an email template.
+Finally, the API uses the SendGrid API to send the email with the csv file attached.
+
 ## Installation
 
 **Clone the repository to your local machine**
