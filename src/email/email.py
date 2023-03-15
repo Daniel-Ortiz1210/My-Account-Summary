@@ -1,17 +1,33 @@
 from src.utils.account_statement import get_statement_summary
 
+import os
+
 import urllib.request
 import ssl
 import base64
 import sendgrid
-from sendgrid.helpers.mail import Mail, Email, From, To, Subject, Attachment, FileContent, FileName, FileType, Disposition, TemplateId
+from sendgrid.helpers.mail import (
+    Mail, 
+    Email, 
+    From, 
+    To, 
+    Subject, 
+    Attachment, 
+    FileContent, 
+    FileName, 
+    FileType, 
+    Disposition, 
+    TemplateId
+    )
 from python_http_client.exceptions import HTTPError
+
+SENDGRID_API_KEY = os.environ.get("SEND_API_KEY")
 
 def send_email(account_number, email, statement_summary=get_statement_summary):
 
     ssl._create_default_https_context = ssl._create_unverified_context
 
-    client = sendgrid.SendGridAPIClient(api_key="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")
+    client = sendgrid.SendGridAPIClient(api_key=SENDGRID_API_KEY)
     statement_summary = statement_summary(account_number)
     transactions_by_month = ""
 
