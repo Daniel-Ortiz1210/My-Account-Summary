@@ -14,7 +14,7 @@ def get_app(debug=False):
         openapi_url="/api/v1/openapi.json",
         docs_url="/api/docs"
     )
-    init_db(drop_all=True)
+    init_db()
     return app
 
 
