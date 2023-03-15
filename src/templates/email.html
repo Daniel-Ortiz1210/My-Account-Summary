@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tabla centrada con estilo</title>
+
+    <!-- Estilos para la tabla -->
+    <style type="text/css">
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 80%;
+            max-width: 800px;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        img {
+            height: 50px;
+            margin: 20px;
+        }
+
+        body {
+          font-family: 'Poppins', sans-serif;
+          color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Coloca el logo aquí -->
+    <img src="https://challenge-static-files.s3.amazonaws.com/logo_stori.png" alt="Stori Logo">
+
+    <!-- Título de la tabla -->
+    <h1>Aqui esta tu balance de cuenta</h1>
+
+    <!-- Crea la tabla -->
+    <table>
+      <thead>
+        <tr>
+          <th>Balance Total</th>
+          <th>Monto Promedio Crédito</th>
+          <th>Monto Promedio Débito</th>
+          <th>Transacciones por Mes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>:balance</td>
+          <td>:avg_credit</td>
+          <td>:avg_debit</td>
+          <td>:month_transactions</td>
+        </tr>
+      </tbody>
+    </table>
+
+</body>
+</html>
