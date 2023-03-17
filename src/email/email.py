@@ -27,7 +27,7 @@ from botocore.exceptions import ClientError
 
 def get_sendgrid_api_key():
 
-    secret_name = "sendgrid_api_key"
+    secret_name = "new_sendgrid_api_key"
     region_name = "us-east-1"
 
     # Create a Secrets Manager client
@@ -55,7 +55,7 @@ def send_email(account_number, email, statement_summary=get_statement_summary):
     ssl._create_default_https_context = ssl._create_unverified_context
     
     sendgrid_api_key = get_sendgrid_api_key()
-    client = sendgrid.SendGridAPIClient(api_key=sendgrid_api_key["send_grid_api_key"])
+    client = sendgrid.SendGridAPIClient(api_key=sendgrid_api_key["new_sendgrid_api_key"])
     statement_summary = statement_summary(account_number)
     transactions_by_month = ""
 
@@ -70,7 +70,7 @@ def send_email(account_number, email, statement_summary=get_statement_summary):
         csv_file_encoded = base64.b64encode(csv_file).decode()
 
     mail = Mail(
-            from_email=From("thisisdanielortiz@gmail.com"),  
+            from_email=From("ortricks1212@gmail.com"),  
             subject=Subject("Aqui está tu estado de cuenta"),
             to_emails=To(email),
             plain_text_content="Tomáte tu tiempo para revisar todo! Estamos a tus órdenes",
