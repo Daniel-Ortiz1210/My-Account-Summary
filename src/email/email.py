@@ -1,6 +1,7 @@
-from src.utils.account_statement import get_statement_summary
+#from src.utils.account_statement import get_statement_summary
 
 import os
+import json
 
 import urllib.request
 import ssl
@@ -21,13 +22,42 @@ from sendgrid.helpers.mail import (
     )
 from python_http_client.exceptions import HTTPError
 
-SENDGRID_API_KEY = os.environ.get("SEND_API_KEY")
+import boto3
+from botocore.exceptions import ClientError
+
+def get_sendgrid_api_key():
+
+    aws_credentials = aws_api_keys()
+
+    secret_name = "sendgrid_api_key"
+    region_name = "us-east-1"
+
+    # Create a Secrets Manager client
+    session = boto3.session.Session()
+    client = session.client(
+        service_name='secretsmanager',
+        region_name=region_name
+    )
+
+    try:
+        get_secret_value_response = client.get_secret_value(
+            SecretId=secret_name
+        )
+    except ClientError as e:
+        raise e
+
+    # Decrypts secret using the associated KMS key.
+    secret = get_secret_value_response['SecretString']
+    to_dict = json.loads(secret)
+    return to_dict
+
+sendgrid_api_key = get_sendgrid_api_key()
 
 def send_email(account_number, email, statement_summary=get_statement_summary):
 
     ssl._create_default_https_context = ssl._create_unverified_context
 
-    client = sendgrid.SendGridAPIClient(api_key=SENDGRID_API_KEY)
+    client = sendgrid.SendGridAPIClient(api_key=sendgrid_api_key["send_grid_api_key"])
     statement_summary = statement_summary(account_number)
     transactions_by_month = ""
 
@@ -64,4 +94,3 @@ def send_email(account_number, email, statement_summary=get_statement_summary):
         return {"status": response.status_code}
     except HTTPError as e:
         return {"status": response.status_code, "info": e}
-    

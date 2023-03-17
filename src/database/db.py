@@ -2,9 +2,10 @@ from peewee import PostgresqlDatabase
 import os
 import boto3
 from botocore.exceptions import ClientError
+import json
 
 
-def get_secret():
+def db_credentials():
 
     secret_name = "db_credentials"
     region_name = "us-east-1"
@@ -25,31 +26,19 @@ def get_secret():
 
     # Decrypts secret using the associated KMS key.
     secret = get_secret_value_response['SecretString']
-    print(dict(secret))
-    return secret
+    to_dict = json.loads(secret)
+    return to_dict
 
-"""
-"database-1.c5niavzkvagt.us-east-1.rds.amazonaws.com"
-"transactions"
-"aZf5gT6f2KVb001"
-"aZf5gT6f2KVb001"
-"""
+credentials = db_credentials()
 
-
-
-db_host = os.environ.get("DB_HOST")
 db_name = os.environ.get("DB_NAME")
-db_password = os.environ.get("DB_PASSWORD")
-db_user = os.environ.get("DB_USER")
-
 
 db_params = {
     "name": db_name,
-    "host": db_host,
-    "user": db_user,
-    "password": db_password
+    "host": credentials["host"],
+    "user": credentials["username"],
+    "password": credentials["password"]
     }
-
 
 psql_db = PostgresqlDatabase(
     db_params.get("name"), 

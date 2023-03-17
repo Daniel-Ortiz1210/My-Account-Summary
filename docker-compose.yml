@@ -4,13 +4,7 @@ services:
   app:
     build: .
     environment:
-      SEND_API_KEY: "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"
-      DB_HOST: "database-1.c5niavzkvagt.us-east-1.rds.amazonaws.com"
       DB_NAME: "transactions"
-      DB_PASSWORD: "aZf5gT6f2KVb001"
-      DB_USER: "postgres"
-      AWS_ACCESS_KEY_ID: "AKIA2KYNWMKPYFMALWJT"
-      AWS_SECRET_ACCESS_KEY: "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"
     ports:
       - "8080:8080"
     volumes: 
