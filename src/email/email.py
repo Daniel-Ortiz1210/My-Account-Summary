@@ -1,4 +1,4 @@
-#from src.utils.account_statement import get_statement_summary
+from src.utils.account_statement import get_statement_summary
 
 import os
 import json
@@ -27,8 +27,6 @@ from botocore.exceptions import ClientError
 
 def get_sendgrid_api_key():
 
-    aws_credentials = aws_api_keys()
-
     secret_name = "sendgrid_api_key"
     region_name = "us-east-1"
 
@@ -51,12 +49,12 @@ def get_sendgrid_api_key():
     to_dict = json.loads(secret)
     return to_dict
 
-sendgrid_api_key = get_sendgrid_api_key()
 
 def send_email(account_number, email, statement_summary=get_statement_summary):
 
     ssl._create_default_https_context = ssl._create_unverified_context
-
+    
+    sendgrid_api_key = get_sendgrid_api_key()
     client = sendgrid.SendGridAPIClient(api_key=sendgrid_api_key["send_grid_api_key"])
     statement_summary = statement_summary(account_number)
     transactions_by_month = ""
